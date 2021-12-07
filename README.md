@@ -18,3 +18,4 @@ repo for my solutions of katas on codewars
 | 11 | 2021-12-3 | 5 | [PaginationHelper](https://www.codewars.com/kata/515bb423de843ea99400000a) | Python | https://youtu.be/G5oIzLFHAnM |
 | 12 | 2021-12-4 | 4 | [Snail](https://www.codewars.com/kata/521c2db8ddc89b9b7a0000c1) | Python | https://youtu.be/sRRDPUn53xc |
 | 13 | 2021-12-6 | 4 | [Permutations](https://www.codewars.com/kata/5254ca2719453dcc0b00027d) | Python | https://youtu.be/kre732iogCI |
+| 14 | 2021-12-7 | 4 | [A Simplistic TCP Finite State Machine (FSM)](https://www.codewars.com/kata/54acc128329e634e9a000362) | Python | https://youtu.be/pCcJCF2swhU |
