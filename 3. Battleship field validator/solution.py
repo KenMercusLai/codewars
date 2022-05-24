@@ -1,73 +1,56 @@
-# takes: str; returns: [ (str, int) ] (Strings in return value are single characters)
-
-
-def frequencies(s):
-    return [(i, s.count(i)) for i in set(s)]
-
-
-def construct_tree(s):
-    converted_s = list(map(lambda x: {'code': "", 'letter': x[0], 'count': x[1], 'children': []}, s))
-    converted_s = sorted(converted_s, key=lambda x: x['count'], reverse=True)
-    while len(converted_s) > 1:
-        last_0 = converted_s.pop()
-        last_0['code'] = '1'
-        last_1 = converted_s.pop()
-        last_1['code'] = '0'
-        new_node = {'code': "", 'letter': None, 'count': last_0['count'] + last_1['count'],
-                    'children': [last_0, last_1]}
-        converted_s += [new_node]
-        converted_s = sorted(converted_s, key=lambda x: x['count'], reverse=True)
-    return converted_s
-
-
-def simplify_tree(constructed_tree, initial_code, translated):
-    for i in constructed_tree:
-        if i['children']:
-            translated.update(simplify_tree(i['children'], initial_code + i['code'], translated))
-        else:
-            translated[i['letter']] = initial_code + i['code']
-    return translated
-
-
-# takes: [ (str, int) ], str; returns: String (with "0" and "1")
-def translate(freqs):
-    encoded_tree = construct_tree(freqs)
-    return simplify_tree(encoded_tree, '', {})
-
-
-def encode(freqs, s):
-    if len(freqs) < 2:
-        return None
-    translated_code = translate(freqs)
-    return ''.join([translated_code[i] for i in s])
-
-
-def invert_code(translated_code):
-    return {v: i for i, v in translated_code.items()}
-
-
-# takes [ [str, int] ], str (with "0" and "1"); returns: str
-def decode(freqs, bits):
-    if len(freqs) < 2:
-        return None
-
-    translated_code = translate(freqs)
-    inverted_code = invert_code(translated_code)
-    ret = ''
-    bit = ''
-    while bits:
-        bit += bits[0]
-        bits = bits[1:]
-        if bit in inverted_code:
-            ret += inverted_code[bit]
-            bit = ''
+def group_cells(field):
+    ret = []
+    for i in range(len(field)):
+        for j in range(len(field[i])):
+            if field[i][j] == 1:
+                for group_index in range(len(ret)):
+                    if ((i + 1, j) in ret[group_index] or
+                            (i - 1, j) in ret[group_index] or
+                            (i, j + 1) in ret[group_index] or
+                            (i, j - 1) in ret[group_index]):
+                        ret[group_index].append((i, j))
+                        break
+                else:
+                    ret.append([(i, j)])
     return ret
 
 
+def straight(cells):
+    rows = map(lambda x: x[0], cells)
+    cols = map(lambda x: x[1], cells)
+    return len(set(list(rows))) == 1 or len(set(list(cols))) == 1
+
+
+def validate_groups(groups):
+    lengths = list(map(len, groups))
+    return len(groups) == 10 and all(map(straight, groups)) and lengths.count(1) == 4 and lengths.count(
+        2) == 3 and lengths.count(3) == 2 and lengths.count(4) == 1
+
+
+def contact(field):
+    for i in range(len(field) - 1):
+        for j in range(len(field[i]) - 1):
+            if field[i][j:j + 2] == [1, 0] and field[i + 1][j:j + 2] == [0, 1]:
+                return False
+            elif field[i][j:j + 2] == [0, 1] and field[i + 1][j:j + 2] == [1, 0]:
+                return False
+    return True
+
+
+def validate_battlefield(field):
+    groups = group_cells(field)
+    return validate_groups(groups) and contact(field)
+
+
 if __name__ == '__main__':
-    fs = frequencies("aaaabcc")
-    assert encode(fs, "aaaabcc") is not None
-    assert len(encode(fs, "aaaabcc")) == 10
-    assert encode(fs, []) == ''
-    assert decode(fs, []) == ''
-    assert decode(fs, encode(fs, "aaaabcc")) == "aaaabcc"
+    battleField = [[1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+                   [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+                   [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+                   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+                   [0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+                   [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    assert validate_battlefield(battleField) == True
