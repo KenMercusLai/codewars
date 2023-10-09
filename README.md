@@ -23,3 +23,4 @@ repo for my solutions of katas on codewars
 |16| 2023-10-08|  6  |                         [Padovan numbers](https://www.codewars.com/kata/5803ee0ed5438edcc9000087)                         |Python ||
 |16| 2023-10-08|  3  |                [How many are smaller than me II?](https://www.codewars.com/kata/56a1c63f3bc6827e13000006)                 |Python ||
 |17| 2023-10-09|  4  |            [Next smaller number with the same digits](https://www.codewars.com/kata/5659c6d896bc135c4c00021e)            |Python ||
+|18| 2023-10-09|  3  |            [Breaking the Vigenère Cipher](https://www.codewars.com/kata/544e5d75908f2d5eb700052b)            |Python ||
