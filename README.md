@@ -19,6 +19,7 @@ repo for my solutions of katas on codewars
 | 12 | 2021-12-4 |  4  |                              [Snail](https://www.codewars.com/kata/521c2db8ddc89b9b7a0000c1)                              |  Python  | https://youtu.be/sRRDPUn53xc |
 | 13 | 2021-12-6 |  4  |                          [Permutations](https://www.codewars.com/kata/5254ca2719453dcc0b00027d)                           |  Python  | https://youtu.be/kre732iogCI |
 | 14 | 2021-12-7 |  4  |           [A Simplistic TCP Finite State Machine (FSM)](https://www.codewars.com/kata/54acc128329e634e9a000362)           |  Python  | https://youtu.be/pCcJCF2swhU |
-|15| 2023-10-08|  6  |                                                           [Pell Numbers](https://www.codewars.com/kata/5818d00a559ff57a2f000082)| Python | |                             | Python | |
-|16| 2023-10-08|  6  |                                                           [Padovan numbers](https://www.codewars.com/kata/5803ee0ed5438edcc9000087)|Python ||
-|16| 2023-10-08|  3  |                                                           [How many are smaller than me II?](https://www.codewars.com/kata/56a1c63f3bc6827e13000006)|Python ||
+|15| 2023-10-08|  6  |                          [Pell Numbers](https://www.codewars.com/kata/5818d00a559ff57a2f000082)                           | Python | |                             | Python | |
+|16| 2023-10-08|  6  |                         [Padovan numbers](https://www.codewars.com/kata/5803ee0ed5438edcc9000087)                         |Python ||
+|16| 2023-10-08|  3  |                [How many are smaller than me II?](https://www.codewars.com/kata/56a1c63f3bc6827e13000006)                 |Python ||
+|17| 2023-10-09|  4  |            [Next smaller number with the same digits](https://www.codewars.com/kata/5659c6d896bc135c4c00021e)            |Python ||
