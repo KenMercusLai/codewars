@@ -4,15 +4,23 @@ def next_smaller(n):
         return -1
 
     n = list(str(n))
+    # no need to check if the digits are already in the smallest combination
     if sorted(n) == n:
         return -1
 
-    # starting from the second last digit, find the first digit that is smaller than the digit on its right
+    # Starting from the second last digit A, find the max digit that is smaller than A
+    # swap these two digits and sort the digits after A descend
     for i in range(len(n) - 2, -1, -1):
-        if n[i] > n[i + 1]:
-            for j in range(i + 1, len(n)):
-                if n[j] < n[i]:
-                    n[i], n[j] = n[j], n[i]
-                    n[i + 1 :] = sorted(n[i + 1 :], reverse=True)
-                    return int("".join(n))
+        smaller_numbers_on_right = list(filter(lambda x: x < n[i], n[i + 1 :]))
+        if not smaller_numbers_on_right:
+            continue
+        biggest = max(smaller_numbers_on_right)
+        n[i], n[n[i + 1 :].index(biggest) + i + 1] = (
+            n[n[i + 1 :].index(biggest) + i + 1],
+            n[i],
+        )
+        n[i + 1 :] = sorted(n[i + 1 :], reverse=True)
+        if n[0] == "0":
+            return -1
+        return int("".join(n))
     return -1
